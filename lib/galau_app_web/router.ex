@@ -18,6 +18,8 @@ defmodule GalauAppWeb.Router do
 
     get("/", PageController, :index)
     resources("/questions", QuestionController)
+    get("/users", UserController, :index)
+    get("/users/:id", UserController, :show)
   end
 
   # Other scopes may use custom stacks.
