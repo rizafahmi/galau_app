@@ -24,7 +24,11 @@ defmodule GalauApp.Accounts do
 
   def create_user(attrs \\ %{}) do
     %User{}
-    |> User.changeset(attrs)
+    |> User.registration_changeset(attrs)
     |> Repo.insert()
+  end
+
+  def change_registration(%User{} = user, attrs) do
+    User.registration_changeset(user, attrs)
   end
 end

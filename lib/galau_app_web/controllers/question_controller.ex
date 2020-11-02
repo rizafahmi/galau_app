@@ -4,6 +4,8 @@ defmodule GalauAppWeb.QuestionController do
   alias GalauApp.Vote
   alias GalauApp.Vote.Question
 
+  plug(:authenticate)
+
   def index(conn, _params) do
     questions = Vote.list_questions()
     render(conn, "index.html", questions: questions)
@@ -58,5 +60,16 @@ defmodule GalauAppWeb.QuestionController do
     conn
     |> put_flash(:info, "Question deleted successfully.")
     |> redirect(to: Routes.question_path(conn, :index))
+  end
+
+  defp authenticate(conn, _opts) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You must be login")
+      |> redirect(to: Routes.page_path(conn, :index))
+      |> halt()
+    end
   end
 end
