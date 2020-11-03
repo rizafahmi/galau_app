@@ -20,6 +20,7 @@ defmodule GalauAppWeb.Router do
     get("/", PageController, :index)
     resources("/questions", QuestionController)
     resources("/users", UserController, only: [:index, :show, :new, :create])
+    resources("/sessions", SessionController, only: [:new, :create, :delete])
   end
 
   # Other scopes may use custom stacks.

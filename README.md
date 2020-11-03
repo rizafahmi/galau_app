@@ -9,10 +9,12 @@ Fitur-fiturnya:
 * Delete vote
 * Halaman vote untuk penonton
 
+```
 Question <- Answers
    ^
    |
   User
+```
 
 To start your Phoenix server:
 

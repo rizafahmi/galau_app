@@ -31,4 +31,20 @@ defmodule GalauApp.Accounts do
   def change_registration(%User{} = user, attrs) do
     User.registration_changeset(user, attrs)
   end
+
+  def authenticate_with_email_and_password(email, given_password) do
+    user = get_user_by(email: email)
+
+    cond do
+      user && Pbkdf2.verify_pass(given_password, user.password_hash) ->
+        {:ok, user}
+
+      user ->
+        {:error, :unauthorized}
+
+      true ->
+        Pbkdf2.no_user_verify()
+        {:error, :not_found}
+    end
+  end
 end
