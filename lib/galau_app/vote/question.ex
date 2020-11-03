@@ -13,6 +13,9 @@ defmodule GalauApp.Vote.Question do
     field(:answer4_count, :integer)
     field(:body, :string)
     field(:status, :boolean, default: false)
+    # field(:user_id, :id)
+
+    belongs_to(:user, GalauApp.Accounts.User)
 
     timestamps()
   end
@@ -33,15 +36,7 @@ defmodule GalauApp.Vote.Question do
       :status
     ])
     |> validate_required([
-      :body,
-      :answer1,
-      :answer1_count,
-      :answer2,
-      :answer2_count,
-      :answer3,
-      :answer3_count,
-      :answer4,
-      :answer4_count
+      :body
     ])
   end
 end
