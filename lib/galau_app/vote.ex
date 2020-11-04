@@ -7,6 +7,7 @@ defmodule GalauApp.Vote do
   alias GalauApp.Repo
 
   alias GalauApp.Vote.Question
+  alias GalauApp.Accounts.User
 
   @doc """
   Returns the list of questions.
@@ -17,6 +18,11 @@ defmodule GalauApp.Vote do
       [%Question{}, ...]
 
   """
+  def list_user_questions(%User{} = user) do
+    filter = user_questions_query(Question, user)
+    Repo.all(filter)
+  end
+
   def list_questions do
     Repo.all(Question)
   end
@@ -37,6 +43,11 @@ defmodule GalauApp.Vote do
   """
   def get_question!(id), do: Repo.get!(Question, id)
 
+  def get_user_question!(%User{} = user, id) do
+    filter = user_questions_query(Question, user)
+    Repo.get!(filter, id)
+  end
+
   @doc """
   Creates a question.
 
@@ -49,9 +60,10 @@ defmodule GalauApp.Vote do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_question(attrs \\ %{}) do
+  def create_question(%GalauApp.Accounts.User{} = user, attrs \\ %{}) do
     %Question{}
     |> Question.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:user, user)
     |> Repo.insert()
   end
 
@@ -100,5 +112,9 @@ defmodule GalauApp.Vote do
   """
   def change_question(%Question{} = question, attrs \\ %{}) do
     Question.changeset(question, attrs)
+  end
+
+  defp user_questions_query(query, %User{id: user_id}) do
+    from(q in query, where: q.user_id == ^user_id)
   end
 end
