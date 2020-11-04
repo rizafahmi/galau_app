@@ -34,13 +34,13 @@ defmodule GalauAppWeb.QuestionController do
   end
 
   def edit(conn, %{"id" => id}) do
-    question = Vote.get_question!(conn.assigns.current_user, id)
+    question = Vote.get_user_question!(conn.assigns.current_user, id)
     changeset = Vote.change_question(question)
     render(conn, "edit.html", question: question, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "question" => question_params}) do
-    question = Vote.get_question!(conn.assigns.current_user, id)
+    question = Vote.get_user_question!(conn.assigns.current_user, id)
 
     case Vote.update_question(question, question_params) do
       {:ok, question} ->
@@ -54,7 +54,7 @@ defmodule GalauAppWeb.QuestionController do
   end
 
   def delete(conn, %{"id" => id}) do
-    question = Vote.get_question!(conn.assigns.current_user, id)
+    question = Vote.get_user_question!(conn.assigns.current_user, id)
     {:ok, _question} = Vote.delete_question(question)
 
     conn

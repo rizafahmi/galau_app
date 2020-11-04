@@ -9,38 +9,6 @@
   <%= text_input f, :body %>
   <%= error_tag f, :body %>
 
-  <%= label f, :answer1 %>
-  <%= text_input f, :answer1 %>
-  <%= error_tag f, :answer1 %>
-
-  <%= label f, :answer1_count %>
-  <%= number_input f, :answer1_count %>
-  <%= error_tag f, :answer1_count %>
-
-  <%= label f, :answer2 %>
-  <%= text_input f, :answer2 %>
-  <%= error_tag f, :answer2 %>
-
-  <%= label f, :answer2_count %>
-  <%= number_input f, :answer2_count %>
-  <%= error_tag f, :answer2_count %>
-
-  <%= label f, :answer3 %>
-  <%= text_input f, :answer3 %>
-  <%= error_tag f, :answer3 %>
-
-  <%= label f, :answer3_count %>
-  <%= number_input f, :answer3_count %>
-  <%= error_tag f, :answer3_count %>
-
-  <%= label f, :answer4 %>
-  <%= text_input f, :answer4 %>
-  <%= error_tag f, :answer4 %>
-
-  <%= label f, :answer4_count %>
-  <%= number_input f, :answer4_count %>
-  <%= error_tag f, :answer4_count %>
-
   <%= label f, :status %>
   <%= checkbox f, :status %>
   <%= error_tag f, :status %>

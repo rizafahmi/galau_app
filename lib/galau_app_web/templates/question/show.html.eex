@@ -8,46 +8,6 @@
   </li>
 
   <li>
-    <strong>Answer1:</strong>
-    <%= @question.answer1 %>
-  </li>
-
-  <li>
-    <strong>Answer1 count:</strong>
-    <%= @question.answer1_count %>
-  </li>
-
-  <li>
-    <strong>Answer2:</strong>
-    <%= @question.answer2 %>
-  </li>
-
-  <li>
-    <strong>Answer2 count:</strong>
-    <%= @question.answer2_count %>
-  </li>
-
-  <li>
-    <strong>Answer3:</strong>
-    <%= @question.answer3 %>
-  </li>
-
-  <li>
-    <strong>Answer3 count:</strong>
-    <%= @question.answer3_count %>
-  </li>
-
-  <li>
-    <strong>Answer4:</strong>
-    <%= @question.answer4 %>
-  </li>
-
-  <li>
-    <strong>Answer4 count:</strong>
-    <%= @question.answer4_count %>
-  </li>
-
-  <li>
     <strong>Status:</strong>
     <%= @question.status %>
   </li>

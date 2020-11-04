@@ -4,14 +4,6 @@
   <thead>
     <tr>
       <th>Body</th>
-      <th>Answer1</th>
-      <th>Answer1 count</th>
-      <th>Answer2</th>
-      <th>Answer2 count</th>
-      <th>Answer3</th>
-      <th>Answer3 count</th>
-      <th>Answer4</th>
-      <th>Answer4 count</th>
       <th>Status</th>
 
       <th></th>
@@ -21,14 +13,6 @@
 <%= for question <- @questions do %>
     <tr>
       <td><%= question.body %></td>
-      <td><%= question.answer1 %></td>
-      <td><%= question.answer1_count %></td>
-      <td><%= question.answer2 %></td>
-      <td><%= question.answer2_count %></td>
-      <td><%= question.answer3 %></td>
-      <td><%= question.answer3_count %></td>
-      <td><%= question.answer4 %></td>
-      <td><%= question.answer4_count %></td>
       <td><%= question.status %></td>
 
       <td>
