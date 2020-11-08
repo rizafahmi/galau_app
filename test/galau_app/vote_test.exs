@@ -79,4 +79,65 @@ defmodule GalauApp.VoteTest do
       assert %Ecto.Changeset{} = Vote.change_question(question)
     end
   end
+
+  describe "answers" do
+    alias GalauApp.Vote.Answer
+
+    @valid_attrs %{count: 42, text: "some text"}
+    @update_attrs %{count: 43, text: "some updated text"}
+    @invalid_attrs %{count: nil, text: nil}
+
+    def answer_fixture(attrs \\ %{}) do
+      {:ok, answer} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Vote.create_answer()
+
+      answer
+    end
+
+    test "list_answers/0 returns all answers" do
+      answer = answer_fixture()
+      assert Vote.list_answers() == [answer]
+    end
+
+    test "get_answer!/1 returns the answer with given id" do
+      answer = answer_fixture()
+      assert Vote.get_answer!(answer.id) == answer
+    end
+
+    test "create_answer/1 with valid data creates a answer" do
+      assert {:ok, %Answer{} = answer} = Vote.create_answer(@valid_attrs)
+      assert answer.count == 42
+      assert answer.text == "some text"
+    end
+
+    test "create_answer/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Vote.create_answer(@invalid_attrs)
+    end
+
+    test "update_answer/2 with valid data updates the answer" do
+      answer = answer_fixture()
+      assert {:ok, %Answer{} = answer} = Vote.update_answer(answer, @update_attrs)
+      assert answer.count == 43
+      assert answer.text == "some updated text"
+    end
+
+    test "update_answer/2 with invalid data returns error changeset" do
+      answer = answer_fixture()
+      assert {:error, %Ecto.Changeset{}} = Vote.update_answer(answer, @invalid_attrs)
+      assert answer == Vote.get_answer!(answer.id)
+    end
+
+    test "delete_answer/1 deletes the answer" do
+      answer = answer_fixture()
+      assert {:ok, %Answer{}} = Vote.delete_answer(answer)
+      assert_raise Ecto.NoResultsError, fn -> Vote.get_answer!(answer.id) end
+    end
+
+    test "change_answer/1 returns a answer changeset" do
+      answer = answer_fixture()
+      assert %Ecto.Changeset{} = Vote.change_answer(answer)
+    end
+  end
 end

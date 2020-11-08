@@ -1,0 +1,30 @@
+<h1>Listing Answers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Text</th>
+      <th>Count</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for answer <- @answers do %>
+    <tr>
+      <td><%= answer.question.body %></td>
+      <td><%= answer.text %></td>
+      <td><%= answer.count %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.answer_path(@conn, :show, answer) %></span>
+        <span><%= link "Edit", to: Routes.answer_path(@conn, :edit, answer) %></span>
+        <span><%= link "Delete", to: Routes.answer_path(@conn, :delete, answer), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Answer", to: Routes.answer_path(@conn, :new) %></span>

@@ -7,6 +7,7 @@ defmodule GalauApp.Vote.Question do
     field(:status, :boolean, default: false)
 
     belongs_to(:user, GalauApp.Accounts.User)
+    has_many(:answer, GalauApp.Vote.Answer)
 
     timestamps()
   end

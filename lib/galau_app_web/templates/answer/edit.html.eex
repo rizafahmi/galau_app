@@ -1,0 +1,5 @@
+<h1>Edit Answer</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.answer_path(@conn, :update, @answer)) %>
+
+<span><%= link "Back", to: Routes.answer_path(@conn, :index) %></span>

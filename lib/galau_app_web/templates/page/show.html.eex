@@ -1,0 +1,13 @@
+<h1>Vote Now!</h1>
+
+<h2><%= @question.body %></h2>
+<ul>
+  <%= for answer <- @question.answer do %>
+    <li>
+      <div>
+        <%= answer.text %> (<%= answer.count %>) - 
+        <%= link "Vote", to: Routes.page_path(@conn, :vote, answer) %>
+      </div>
+    </li>
+  <% end %>
+</ul>
