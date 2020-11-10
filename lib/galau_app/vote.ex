@@ -219,6 +219,14 @@ defmodule GalauApp.Vote do
     Answer.changeset(answer, attrs)
   end
 
+  def update_vote_counter(id) do
+    answer = get_answer!(id)
+
+    answer
+    |> Answer.changeset(%{count: answer.count + 1})
+    |> Repo.update()
+  end
+
   defp query_answers_by_question(question_id) do
     from(a in Answer, where: a.question_id == ^question_id)
   end

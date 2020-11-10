@@ -19,7 +19,7 @@ defmodule GalauAppWeb.Router do
 
     get("/", PageController, :index)
     get("/:question_id", PageController, :show)
-    get("/vote/:question_id", PageController, :vote)
+    get("/vote/:vote_id", PageController, :vote)
     resources("/questions", QuestionController)
     resources("/users", UserController, only: [:index, :show, :new, :create])
     resources("/sessions", SessionController, only: [:new, :create, :delete])

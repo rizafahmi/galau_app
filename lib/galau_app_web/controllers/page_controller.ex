@@ -14,7 +14,9 @@ defmodule GalauAppWeb.PageController do
     render(conn, "show.html", question: question)
   end
 
-  def vote(conn, _params) do
+  def vote(conn, %{"vote_id" => id}) do
+    # update counter
+    Vote.update_vote_counter(id)
     redirect(conn, to: Routes.page_path(conn, :index))
   end
 end
