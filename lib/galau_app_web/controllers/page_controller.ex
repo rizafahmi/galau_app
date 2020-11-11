@@ -10,13 +10,14 @@ defmodule GalauAppWeb.PageController do
 
   def show(conn, %{"question_id" => question_id}) do
     question = GalauApp.Vote.get_question!(question_id) |> GalauApp.Repo.preload(:answer)
-    IO.inspect(question)
     render(conn, "show.html", question: question)
   end
 
   def vote(conn, %{"vote_id" => id}) do
+    # get question_id
+    answer = Vote.get_answer!(id)
     # update counter
     Vote.update_vote_counter(id)
-    redirect(conn, to: Routes.page_path(conn, :index))
+    redirect(conn, to: Routes.page_path(conn, :show, answer.question_id))
   end
 end

@@ -17,13 +17,13 @@ defmodule GalauAppWeb.Router do
   scope "/", GalauAppWeb do
     pipe_through(:browser)
 
-    get("/", PageController, :index)
-    get("/:question_id", PageController, :show)
     get("/vote/:vote_id", PageController, :vote)
     resources("/questions", QuestionController)
     resources("/users", UserController, only: [:index, :show, :new, :create])
     resources("/sessions", SessionController, only: [:new, :create, :delete])
     resources("/answers", AnswerController)
+    get("/", PageController, :index)
+    get("/:question_id", PageController, :show)
   end
 
   # Other scopes may use custom stacks.
