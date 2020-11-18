@@ -5,8 +5,8 @@
   <%= for answer <- @question.answer do %>
     <li>
       <div>
-        <%= answer.text %> (<%= answer.count %>) - 
-        <%= link "Vote", to: Routes.page_path(@conn, :vote, answer) %>
+        <%= answer.text %> (<span class="vote" id="vote-<%= answer.id %>"><%= answer.count %> | <%= calculate_percent(@question, answer.count) %>% </span>) - 
+        <button id="vote-<%= answer.id %>" data-id="<%= answer.id %>" type="button">Vote</button>
       </div>
     </li>
   <% end %>
